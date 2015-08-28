@@ -2,8 +2,9 @@
  * Created by tom on 27/08/2015.
  */
 
-var menu = false;
+var menu = {"show": false};
 var currentSlide = 0;
+var currentSection = 0;
 
 var slides = [
     {
@@ -117,6 +118,15 @@ var nextSlide = function() {
         EVENTS.queueEvent(function(){loadSlide(currentSlide)},500);
     } else {
       console.log("end of slides..");
+      currentSection += 1;
+      fillLine("#menuLoader" + currentSection);
+      if (currentSection >= 3){
+        d3.select("#infographic").select(".slide-link")
+            .transition()
+            .duration(500)
+            .style("opacity","0")
+            .remove();
+      }
     }
 };
 
@@ -126,32 +136,34 @@ var fillViewport = function () {
 };
 
 var toggleMenu = function () {
-    if(!menu) {
-        d3.select("#menu")
-            .transition()
+    theMenu = d3.select("#menu");
+
+    if(!menu.show) {
+        menu.offset = theMenu.style("bottom");
+        theMenu.transition()
             .duration(1000)
-            .style("opacity", "1")
+            .style("opacity", "0.8")
             .style("bottom", "0px");
-        menu = true;
+        menu.show = true;
     } else {
-        d3.select("#menu")
-            .transition()
+        theMenu.transition()
             .duration(1000)
             .style("opacity", "0")
-            .style("bottom", "-20px");
-        menu = false;
+            .style("bottom", menu.offset);
+        menu.show = false;
     }
 };
 
-//var fillIcon = function(id) {
-//
-//};
-//
-//var fillLine = function(id) {
-//    d3.select(id)
-//        .transition()
-//
-//}
+var fillIcon = function(id) {
+
+};
+
+var fillLine = function(id) {
+   d3.select(id).select(".fill")
+       .transition()
+           .duration(1000)
+           .style("width", "100%")
+}
 
 var EVENTS = { "totalTime": 0,
     "queueEvent": function(fn, t){
