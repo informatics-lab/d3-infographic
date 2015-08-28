@@ -4,6 +4,7 @@
 #infographic {
     position: relative;
     overflow-y: hidden;
+    overflow-x: hidden;
     text-align: center;
 }
 
@@ -19,7 +20,10 @@
 #infographic .slide-txt {
     z-index: 0;
     opacity: 0;
-    padding-top: 15%;
+    position: absolute;
+    top:25%;
+    text-align: center;
+    width: 100%;
     font-size: 300%;
     font-family: Rokkitt;
 }
@@ -29,6 +33,16 @@
     opacity: 0;
     width: 15%;
     cursor: pointer;
+    text-align: center;
+    top:42%;
+}
+
+#infographic .slide-icon {
+    z-index: 0;
+    opacity: 0;
+    width: 15%;
+    text-align: center;
+    top:-2%;
 }
 
 #logo {

@@ -48,6 +48,15 @@ var loadSlide = function(index) {
         .duration(1000)
         .style("opacity",1);
 
+    if (slides[index].icon) {
+        infographic.append("img")
+            .attr("src", slides[index].icon)
+            .attr("class","slide-icon")
+            .transition()
+            .duration(1000)
+            .style("opacity","1");
+    }
+
     infographic.append("h2")
         .html(slides[index].txt)
         .attr("class","slide-txt")
@@ -80,6 +89,14 @@ var unloadSlide = function(index) {
         .duration(500)
         .style("opacity","0")
         .remove();
+
+    if (slides[index].icon) {
+        infographic.select(".slide-icon")
+            .transition()
+            .duration(500)
+            .style("opacity","0")
+            .remove();
+    }
 
     infographic.select(".slide-txt")
         .transition()
@@ -137,6 +154,13 @@ var toggleMenu = function () {
 //        .transition()
 //
 //}
+
+var EVENTS = { "totalTime": 0,
+    "queueEvent": function(fn, t){
+        setTimeout(fn, this.totalTime+t);
+        this.totalTime += t;
+    }
+};
 
 window.onresize = function () {
     fillViewport();
