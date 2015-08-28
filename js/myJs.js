@@ -44,13 +44,6 @@ var loadSlide = function(index) {
     infographic
         .style("background-image","url("+slides[index].image+")");
 
-    //infographic.append("img")
-    //    .attr("src", slides[index].image)
-    //    .attr("class","slide-bg")
-    //    .transition()
-    //    .duration(1000)
-    //    .style("opacity",1);
-
     if (slides[index].icon) {
         infographic.append("img")
             .attr("src", slides[index].icon)
@@ -92,12 +85,6 @@ var loadSlide = function(index) {
 var unloadSlide = function(index) {
 
     var infographic = d3.select("#infographic");
-
-    //infographic.select(".slide-bg")
-    //    .transition()
-    //    .duration(500)
-    //    .style("opacity","0")
-    //    .remove();
 
     if (slides[index].icon) {
         infographic.select(".slide-icon")
