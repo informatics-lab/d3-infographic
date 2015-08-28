@@ -3,7 +3,7 @@
  */
 
 var menu = false;
-var currentSlide = 1;
+var currentSlide = 0;
 
 var slides = [
     {
@@ -39,35 +39,86 @@ var slides = [
 
 var loadSlide = function(index) {
 
-    $("#infographic").css('background-image', 'url(' + slides[index-1].image + ')');
+    var infographic = d3.select("#infographic");
 
-    $("#infographic").append("<h2>" + slides[index-1].txt + "</h2>");
+    infographic
+        .style("background-image","url("+slides[index].image+")");
+
+    if (slides[index].icon) {
+        infographic.append("img")
+            .attr("src", slides[index].icon)
+            .attr("class","slide-icon")
+            .transition()
+            .duration(1000)
+            .style("opacity","1");
+    }
+
+    infographic.append("h2")
+        .html(slides[index].txt)
+        .attr("class","slide-txt")
+        .transition()
+        .duration(1000)
+        .style("opacity","1");
+
+    if(!slides[index].icon){
+        infographic.select(".slide-txt")
+            .style("padding-top","20%");
+    }
+
+    infographic.append("img")
+        .attr("src", slides[index].link)
+        .attr("class","slide-link")
+        .on("click",function () {
+            return nextSlide();
+        })
+        .transition()
+        .duration(1000)
+        .style("margin-left","0px")
+        .style("opacity","1");
+
+    if (index === slides.length-1) {
+        toggleMenu();
+    }
 
 };
 
 var unloadSlide = function(index) {
 
+    var infographic = d3.select("#infographic");
+
+    if (slides[index].icon) {
+        infographic.select(".slide-icon")
+            .transition()
+            .duration(500)
+            .style("opacity","0")
+            .remove();
+    }
+
+    infographic.select(".slide-txt")
+        .transition()
+        .duration(500)
+        .style("opacity","0")
+        .remove();
+
+    infographic.select(".slide-link")
+        .transition()
+        .duration(500)
+        .style("margin-left",window.innerWidth+"px")
+        .style("opacity","0")
+        .remove();
+
 };
 
-function positionText() {
-    $('#slides').css('left','0')
-    var slideWidth = $('#slides').width();
-    var windowWidth = $(window).width();
-    var slideX = (windowWidth - slideWidth)/2;
-    var slideY = slideYPos - 15;
-
-    $('#slides').css({top: slideY + 'px', left: slideX + 'px'})
-}
-
 var nextSlide = function() {
-    if (!currentSlide > slides.length) {
-        unloadSlide(currentSlide);
-        loadSlide(currentSlide + 1);
+
+    if (currentSlide <= slides.length-2) {
+        EVENTS.queueEvent(function(){unloadSlide(currentSlide)},0);
         currentSlide++;
+        EVENTS.queueEvent(function(){loadSlide(currentSlide)},500);
     } else {
       console.log("end of slides..");
     }
-}
+};
 
 var fillViewport = function () {
     var fullHeight = window.innerHeight;
@@ -78,35 +129,43 @@ var toggleMenu = function () {
     if(!menu) {
         d3.select("#menu")
             .transition()
-            .duration(2000)
+            .duration(1000)
             .style("opacity", "1")
             .style("bottom", "0px");
         menu = true;
     } else {
         d3.select("#menu")
             .transition()
-            .duration(2000)
+            .duration(1000)
             .style("opacity", "0")
             .style("bottom", "-20px");
         menu = false;
     }
 };
 
-var fillIcon = function(id) {
+//var fillIcon = function(id) {
+//
+//};
+//
+//var fillLine = function(id) {
+//    d3.select(id)
+//        .transition()
+//
+//}
 
+var EVENTS = { "totalTime": 0,
+    "queueEvent": function(fn, t){
+        setTimeout(fn, this.totalTime+t);
+        this.totalTime += t;
+    }
 };
-
-var fillLine = function(id) {
-    d3.select(id)
-        .transition()
-
-}
 
 window.onresize = function () {
     fillViewport();
 };
 
 window.onload = function () {
+    console.log("loaded");
     fillViewport();
-    setTimeout(loadSlide(1), 2000);
+    setTimeout(loadSlide(0), 2000);
 };
