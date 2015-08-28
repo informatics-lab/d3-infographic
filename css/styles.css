@@ -6,6 +6,7 @@
     overflow-y: hidden;
     overflow-x: hidden;
     text-align: center;
+    width: 100%;
 }
 
 #infographic .slide-bg {
@@ -20,7 +21,7 @@
 #infographic .slide-txt {
     z-index: 0;
     opacity: 0;
-    position: absolute;
+    /*position: absolute;*/
     top:25%;
     text-align: center;
     width: 100%;
@@ -29,17 +30,19 @@
 }
 
 #infographic .slide-link {
-    position: absolute;
     z-index: 0;
     opacity: 0;
     width: 15%;
     cursor: pointer;
     text-align: center;
     top:42%;
+    clear: both;
+
+    /* off the screen */
+    margin-left:-9999px;
 }
 
 #infographic .slide-icon {
-    position: absolute;
     z-index: 0;
     opacity: 0;
     width: 15%;

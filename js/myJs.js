@@ -72,6 +72,7 @@ var loadSlide = function(index) {
         })
         .transition()
         .duration(1000)
+        .style("margin-left","0px")
         .style("opacity","1");
 
     if (index === slides.length-1) {
@@ -107,16 +108,18 @@ var unloadSlide = function(index) {
     infographic.select(".slide-link")
         .transition()
         .duration(500)
+        .style("margin-left",window.innerWidth+"px")
         .style("opacity","0")
         .remove();
 
 };
 
 var nextSlide = function() {
+
     if (currentSlide <= slides.length-2) {
-        unloadSlide(currentSlide);
+        EVENTS.queueEvent(function(){unloadSlide(currentSlide)},0);
         currentSlide++;
-        loadSlide(currentSlide);
+        EVENTS.queueEvent(function(){loadSlide(currentSlide)},1000);
     } else {
       console.log("end of slides..");
     }
