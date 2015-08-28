@@ -39,25 +39,47 @@ var slides = [
 
 var loadSlide = function(index) {
 
-    $("#infographic").css('background-image', 'url(' + slides[index-1].image + ')');
+    var infographic = d3.select("#infographic");
 
-    $("#infographic").append("<h2>" + slides[index-1].txt + "</h2>");
+    infographic.append("img")
+        .attr("src", slides[index-1].image)
+        .attr("class","slide-bg")
+        .transition()
+        .duration(1000)
+        .style("opacity",1);
+
+    infographic.append("h2")
+        .html(slides[index-1].txt)
+        .attr("class","slide-txt")
+        .transition()
+        .duration(1000)
+        .style("opacity","1");
+
+    infographic.append("a")
+        .attr("onclick","nextSlide()")
+        .append("img")
+        .attr("src", slides[index-1].link);
 
 };
 
 var unloadSlide = function(index) {
 
+    var infographic = d3.select("#infographic");
+
+    infographic.select(".slide-bg")
+        .transition()
+        .duration(500)
+        .style("opacity","0")
+        .remove();
+
+    infographic.select(".slide-txt")
+        .transition()
+        .duration(500)
+        .style("opacity","0")
+        .remove();
+
+
 };
-
-function positionText() {
-    $('#slides').css('left','0')
-    var slideWidth = $('#slides').width();
-    var windowWidth = $(window).width();
-    var slideX = (windowWidth - slideWidth)/2;
-    var slideY = slideYPos - 15;
-
-    $('#slides').css({top: slideY + 'px', left: slideX + 'px'})
-}
 
 var nextSlide = function() {
     if (!currentSlide > slides.length) {
