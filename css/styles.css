@@ -24,6 +24,13 @@
     font-family: Rokkitt;
 }
 
+#infographic .slide-link {
+    z-index: 0;
+    opacity: 0;
+    width: 15%;
+    cursor: pointer;
+}
+
 #logo {
     position: absolute;
     z-index: 1

@@ -3,7 +3,7 @@
  */
 
 var menu = false;
-var currentSlide = 1;
+var currentSlide = 0;
 
 var slides = [
     {
@@ -42,23 +42,32 @@ var loadSlide = function(index) {
     var infographic = d3.select("#infographic");
 
     infographic.append("img")
-        .attr("src", slides[index-1].image)
+        .attr("src", slides[index].image)
         .attr("class","slide-bg")
         .transition()
         .duration(1000)
         .style("opacity",1);
 
     infographic.append("h2")
-        .html(slides[index-1].txt)
+        .html(slides[index].txt)
         .attr("class","slide-txt")
         .transition()
         .duration(1000)
         .style("opacity","1");
 
-    infographic.append("a")
-        .attr("onclick","nextSlide()")
-        .append("img")
-        .attr("src", slides[index-1].link);
+    infographic.append("img")
+        .attr("src", slides[index].link)
+        .attr("class","slide-link")
+        .on("click",function () {
+            return nextSlide();
+        })
+        .transition()
+        .duration(1000)
+        .style("opacity","1");
+
+    if (index === slides.length-1) {
+        toggleMenu();
+    }
 
 };
 
@@ -78,18 +87,23 @@ var unloadSlide = function(index) {
         .style("opacity","0")
         .remove();
 
+    infographic.select(".slide-link")
+        .transition()
+        .duration(500)
+        .style("opacity","0")
+        .remove();
 
 };
 
 var nextSlide = function() {
-    if (!currentSlide > slides.length) {
+    if (currentSlide <= slides.length-2) {
         unloadSlide(currentSlide);
-        loadSlide(currentSlide + 1);
         currentSlide++;
+        loadSlide(currentSlide);
     } else {
       console.log("end of slides..");
     }
-}
+};
 
 var fillViewport = function () {
     var fullHeight = window.innerHeight;
@@ -100,35 +114,36 @@ var toggleMenu = function () {
     if(!menu) {
         d3.select("#menu")
             .transition()
-            .duration(2000)
+            .duration(1000)
             .style("opacity", "1")
             .style("bottom", "0px");
         menu = true;
     } else {
         d3.select("#menu")
             .transition()
-            .duration(2000)
+            .duration(1000)
             .style("opacity", "0")
             .style("bottom", "-20px");
         menu = false;
     }
 };
 
-var fillIcon = function(id) {
-
-};
-
-var fillLine = function(id) {
-    d3.select(id)
-        .transition()
-
-}
+//var fillIcon = function(id) {
+//
+//};
+//
+//var fillLine = function(id) {
+//    d3.select(id)
+//        .transition()
+//
+//}
 
 window.onresize = function () {
     fillViewport();
 };
 
 window.onload = function () {
+    console.log("loaded");
     fillViewport();
-    setTimeout(loadSlide(1), 2000);
+    setTimeout(loadSlide(0), 2000);
 };
