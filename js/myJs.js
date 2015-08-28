@@ -64,6 +64,11 @@ var loadSlide = function(index) {
         .duration(1000)
         .style("opacity","1");
 
+    if(!slides[index].icon){
+        infographic.select(".slide-txt")
+            .style("padding-top","20%");
+    }
+
     infographic.append("img")
         .attr("src", slides[index].link)
         .attr("class","slide-link")
