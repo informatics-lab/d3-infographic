@@ -7,6 +7,9 @@
     overflow-x: hidden;
     text-align: center;
     width: 100%;
+    background-image: url("../images/slides/backg-0.png");
+    background-size: cover;
+    transition: background-image 1s;
 }
 
 #infographic .slide-bg {

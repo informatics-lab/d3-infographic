@@ -41,12 +41,15 @@ var loadSlide = function(index) {
 
     var infographic = d3.select("#infographic");
 
-    infographic.append("img")
-        .attr("src", slides[index].image)
-        .attr("class","slide-bg")
-        .transition()
-        .duration(1000)
-        .style("opacity",1);
+    infographic
+        .style("background-image","url("+slides[index].image+")");
+
+    //infographic.append("img")
+    //    .attr("src", slides[index].image)
+    //    .attr("class","slide-bg")
+    //    .transition()
+    //    .duration(1000)
+    //    .style("opacity",1);
 
     if (slides[index].icon) {
         infographic.append("img")
@@ -90,11 +93,11 @@ var unloadSlide = function(index) {
 
     var infographic = d3.select("#infographic");
 
-    infographic.select(".slide-bg")
-        .transition()
-        .duration(500)
-        .style("opacity","0")
-        .remove();
+    //infographic.select(".slide-bg")
+    //    .transition()
+    //    .duration(500)
+    //    .style("opacity","0")
+    //    .remove();
 
     if (slides[index].icon) {
         infographic.select(".slide-icon")
@@ -124,7 +127,7 @@ var nextSlide = function() {
     if (currentSlide <= slides.length-2) {
         EVENTS.queueEvent(function(){unloadSlide(currentSlide)},0);
         currentSlide++;
-        EVENTS.queueEvent(function(){loadSlide(currentSlide)},1000);
+        EVENTS.queueEvent(function(){loadSlide(currentSlide)},500);
     } else {
       console.log("end of slides..");
     }
