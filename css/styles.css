@@ -29,6 +29,7 @@
 }
 
 #infographic .slide-link {
+    position: absolute;
     z-index: 0;
     opacity: 0;
     width: 15%;
@@ -38,6 +39,7 @@
 }
 
 #infographic .slide-icon {
+    position: absolute;
     z-index: 0;
     opacity: 0;
     width: 15%;
