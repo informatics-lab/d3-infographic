@@ -238,4 +238,5 @@ window.onload = function () {
     console.log("loaded");
     fillViewport();
     setTimeout(loadSlide(0), 2000);
+    toggleMenu();
 };

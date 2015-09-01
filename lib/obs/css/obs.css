@@ -16,6 +16,18 @@
   border-radius: 4px;
 }
 
+#obs-wrapper #sources-histo {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  z-index: 100;
+}
+
+#obs-wrapper #sources-histo rect{
+  fill: steelblue;
+  stroke: steelblue;
+}
+
 #obs-wrapper .centrealign {
   width: 100%;
   text-align: center;
@@ -59,7 +71,7 @@
 
 #obs-wrapper #atmosphere {
   width: 0px;
-  height: 00px;
+  height: 0px;
   border-radius: 50%;
   position: absolute;
   box-shadow: 0px 0px 50px skyblue;
