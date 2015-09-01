@@ -110,6 +110,15 @@ var unloadSlide = function(index) {
 
 };
 
+var unloadAllSlides = function () {
+  if (currentSlide != -1){
+    unloadSlide(currentSlide);
+    d3.select("#infographic")
+        .style("background-image","none");
+    currentSlide = -1;
+  }
+}
+
 var nextSlide = function() {
 
     if (currentSlide <= slides.length-2) {
@@ -118,15 +127,6 @@ var nextSlide = function() {
         EVENTS.queueEvent(function(){loadSlide(currentSlide)},500);
     } else {
       console.log("end of slides..");
-      currentSection += 1;
-      fillLine("#menuLoader" + currentSection);
-      if (currentSection >= 3){
-        d3.select("#infographic").select(".slide-link")
-            .transition()
-            .duration(500)
-            .style("opacity","0")
-            .remove();
-      }
     }
 };
 
@@ -164,6 +164,61 @@ var fillLine = function(id) {
            .duration(1000)
            .style("width", "100%")
 }
+
+var emptyLine = function(id) {
+   d3.select(id).select(".fill")
+       .transition()
+           .duration(1000)
+           .style("width", "0%")
+}
+
+var loadObs = function(id) {
+  unloadAllSlides();
+}
+
+var loadPhysics = function(id) {
+  unloadAllSlides();
+}
+
+var loadAnalyse = function(id) {
+  unloadAllSlides();
+}
+
+var loadForecasts = function(id) {
+  unloadAllSlides();
+}
+
+d3.select("#menuItem1")
+  .on("click",function () {
+      emptyLine("#menuLoader1");
+      emptyLine("#menuLoader2");
+      emptyLine("#menuLoader3");
+      loadObs();
+  })
+
+d3.select("#menuItem2")
+  .on("click",function () {
+      fillLine("#menuLoader1");
+      emptyLine("#menuLoader2");
+      emptyLine("#menuLoader3");
+      loadPhysics();
+  })
+
+d3.select("#menuItem3")
+  .on("click",function () {
+      fillLine("#menuLoader1");
+      fillLine("#menuLoader2");
+      emptyLine("#menuLoader3");
+      loadAnalyse();
+  })
+
+d3.select("#menuItem4")
+  .on("click",function () {
+      fillLine("#menuLoader1");
+      fillLine("#menuLoader2");
+      fillLine("#menuLoader3");
+      loadForecasts();
+  })
 
 var EVENTS = { "totalTime": 0,
     "queueEvent": function(fn, t){

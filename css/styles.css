@@ -69,8 +69,6 @@
     opacity: 0;
     background-color: grey;
     padding: 0px;
-    display: table-cell;
-    vertical-align: middle;
 }
 
 .menuItem {
