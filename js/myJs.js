@@ -174,7 +174,7 @@ var emptyLine = function(id) {
 var loadObs = function(id) {
   unloadAllSlides();
   d3.select("#infographic")
-      .style("background-image","url(/lib/obs/img/bg_clear_dark_4.jpeg)");
+      .style("background-image","url(/lib/obs/img/globe_washed.jpeg)");
   setTimeout(function(){obs.load()}, 500);
 }
 
@@ -238,4 +238,5 @@ window.onload = function () {
     console.log("loaded");
     fillViewport();
     setTimeout(loadSlide(0), 2000);
+    // toggleMenu();
 };

@@ -7,7 +7,7 @@
 }
 
 #obs-wrapper #globecontainer {
-  z-index: 0;
+  z-index: 500;
 }
 
 #obs-wrapper img#mugshot {
@@ -27,19 +27,19 @@
 }
 
 #obs-wrapper path.land {
-  fill: darkseagreen;
+  fill: #b7e07e;
   stroke: black;
 }
 
 #obs-wrapper path.arc {
   fill: transparent;
-  stroke: #ccff33;
+  stroke: violet;
 }
 
 #obs-wrapper path.point {
   transition: 0.25s;
-  stroke: #ccff33;
-  fill: #ccff33;
+  stroke: violet;
+  fill: violet;
 }
 
 #obs-wrapper path.point.active {
@@ -53,7 +53,7 @@
 }
 
 #obs-wrapper #outline {
-  fill: darkblue;
+  fill: #94eef7;
   stroke: black;
 }
 
@@ -63,7 +63,6 @@
   border-radius: 50%;
   position: absolute;
   box-shadow: 0px 0px 50px skyblue;
-  z-index: -1;
 }
 
 #obs-wrapper #tooltip{
