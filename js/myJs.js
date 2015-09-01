@@ -113,8 +113,6 @@ var unloadSlide = function(index) {
 var unloadAllSlides = function () {
   if (currentSlide != -1){
     unloadSlide(currentSlide);
-    d3.select("#infographic")
-        .style("background-image","none");
     currentSlide = -1;
   }
 }
@@ -122,11 +120,12 @@ var unloadAllSlides = function () {
 var nextSlide = function() {
 
     if (currentSlide <= slides.length-2) {
-        EVENTS.queueEvent(function(){unloadSlide(currentSlide)},0);
+        unloadSlide(currentSlide);
         currentSlide++;
-        EVENTS.queueEvent(function(){loadSlide(currentSlide)},500);
+        setTimeout(function(){loadSlide(currentSlide)}, 500);
     } else {
       console.log("end of slides..");
+      loadObs();
     }
 };
 
@@ -174,10 +173,14 @@ var emptyLine = function(id) {
 
 var loadObs = function(id) {
   unloadAllSlides();
+  d3.select("#infographic")
+      .style("background-image","url(/lib/obs/img/bg_clear_dark_4.jpeg)");
+  setTimeout(function(){obs.load()}, 500);
 }
 
 var loadPhysics = function(id) {
   unloadAllSlides();
+  obs.unload();
 }
 
 var loadAnalyse = function(id) {
