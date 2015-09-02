@@ -4,7 +4,7 @@
 
 var menu = {"show": false};
 var currentSlide = 0;
-var currentSection = 0;
+var currentSection = null;
 
 var slides = [
     {
@@ -117,6 +117,26 @@ var unloadAllSlides = function () {
   }
 }
 
+var unloadAll = function () {
+  unloadAllSlides();
+  if (currentSection != null){
+    switch(currentSection) {
+      case "obs":
+          obs.unload();
+          break;
+      case "physics":
+          physics.unload();
+          break;
+      case "analyse":
+          analyse.unload();
+          break;
+      case "forecasts":
+          break;
+    }
+    currentSection = null;
+  }
+}
+
 var nextSlide = function() {
 
     if (currentSlide <= slides.length-2) {
@@ -168,23 +188,30 @@ var emptyLine = function(id) {
 }
 
 var loadObs = function(id) {
-  unloadAllSlides();
+  unloadAll();
+  currentSection = "obs";
   d3.select("#infographic")
       .style("background-image","url(/lib/obs/img/globe_washed.jpeg)");
   setTimeout(function(){obs.load()}, 500);
 }
 
 var loadPhysics = function(id) {
-  unloadAllSlides();
-  obs.unload();
+  unloadAll();
+  currentSection = "physics";
+  d3.select("#infographic")
+      .style("background-image","url(/lib/obs/img/globe_washed.jpeg)");
+  setTimeout(function(){physics.load()}, 500);
 }
 
 var loadAnalyse = function(id) {
-  unloadAllSlides();
+  unloadAll();
+  currentSection = "analyse";
+  setTimeout(function(){analyse.load()}, 500);
 }
 
 var loadForecasts = function(id) {
-  unloadAllSlides();
+  unloadAll();
+  currentSection = "forecasts";
 }
 
 d3.select("#menuItem1")
@@ -234,5 +261,5 @@ window.onload = function () {
     console.log("loaded");
     fillViewport();
     setTimeout(loadSlide(0), 2000);
-    // toggleMenu();
+    toggleMenu();
 };
