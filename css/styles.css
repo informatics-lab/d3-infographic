@@ -11,8 +11,8 @@
     background-image: url("../images/slides/backg-0.png");
     background-size: cover;
     transition: background-image 1s;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
 }
 
 #infographic .slide-bg {
@@ -72,6 +72,7 @@
     opacity: 0;
     background-color: lightslategrey;
     padding: 0px;
+    margin: 0px;
     z-index: 900;
 }
 
