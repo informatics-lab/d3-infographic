@@ -67,34 +67,61 @@
     height: 10%;
     bottom: -10%;
     opacity: 0;
-    background-color: grey;
+    background-color: lightslategrey;
     padding: 0px;
     z-index: 900;
 }
 
-.menuItem {
+#menu .menuItem {
     cursor: pointer;
     height: 100%;
 }
 
-.menuItem img {
+#menu .menuItem img {
     height:100%;
 }
 
-.menuLoader {
-  width: 100%;
-  height: 2%;
-  margin-top: 24%;
-  margin-bottom: 0%;
-  background-color: darkgrey;
-  border-radius: 3%;
+#menu .menuLoader {
+    height:100%;
+    opacity: 1;
 }
 
-.menuLoader .fill {
-  width: 0%;
-  height: 4px;
-  margin: 0;
-  padding: p;
-  background-color: white;
-  border-radius: 3px;
+#menu .progress {
+    width: 100%;
+    height:10%;
+    margin:0px;
+    background-color: lightgray;
+    opacity: 1;
+}
+
+#menu .progress-bar {
+    background-color: white;
+    opacity: 1;
+}
+
+.vbox {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+}
+
+.vbox > * {
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    box-flex: 0;
+    display: block;
+}
+
+.center {
+    -webkit-box-pack: center;
+    -moz-box-pack: center;
+    box-pack: center;
 }
