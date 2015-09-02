@@ -11,6 +11,8 @@
     background-image: url("../images/slides/backg-0.png");
     background-size: cover;
     transition: background-image 1s;
+    padding: 0;
+    margin: 0;
 }
 
 #infographic .slide-bg {
@@ -56,7 +58,7 @@
 
 #logo {
     position: absolute;
-    z-index: 1050
+    z-index: 1099;
     top: 10px;
     left: 10px;
     width: 10%;

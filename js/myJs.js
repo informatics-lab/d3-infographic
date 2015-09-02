@@ -128,6 +128,7 @@ var unloadAll = function () {
           physics.unload();
           break;
       case "analyse":
+          analyse.unload();
           break;
       case "forecasts":
           break;
@@ -212,6 +213,7 @@ var loadPhysics = function(id) {
 var loadAnalyse = function(id) {
   unloadAll();
   currentSection = "analyse";
+  setTimeout(function(){analyse.load()}, 500);
 }
 
 var loadForecasts = function(id) {
@@ -266,4 +268,5 @@ window.onload = function () {
     console.log("loaded");
     fillViewport();
     setTimeout(loadSlide(0), 2000);
+    toggleMenu();
 };
