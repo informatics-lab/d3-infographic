@@ -173,22 +173,15 @@ var toggleMenu = function () {
     }
 };
 
-var fillIcon = function(id) {
-  d3.select(id).select(".fill")
-      .transition()
-          .duration(1000)
-          .style("opacity", "1")
-};
-
 var fillLine = function(id) {
-   d3.select(id).select(".fill")
+   d3.select(id).select(".progress-bar")
        .transition()
            .duration(1000)
-           .style("width", "100%")
+           .style("width", "100%");
 }
 
 var emptyLine = function(id) {
-   d3.select(id).select(".fill")
+   d3.select(id).select(".progress-bar")
        .transition()
            .duration(1000)
            .style("width", "0%")
