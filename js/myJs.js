@@ -2,7 +2,12 @@
  * Created by tom on 27/08/2015.
  */
 
-var menu = {"show": false};
+var menu = {
+    "show": false,
+    "menuLoader1": false,
+    "menuLoader2": false,
+    "menuLoader3": false
+};
 var currentSlide = 0;
 var currentSection = null;
 
@@ -173,19 +178,21 @@ var toggleMenu = function () {
     }
 };
 
-var fillLine = function(id) {
+var fillLine = function(id, duration) {
    d3.select(id).select(".progress-bar")
        .transition()
-           .duration(1000)
+           .duration(duration)
            .style("width", "100%");
-}
+    menu[id.id] = true;
+};
 
-var emptyLine = function(id) {
+var emptyLine = function(id, duration) {
    d3.select(id).select(".progress-bar")
        .transition()
-           .duration(1000)
-           .style("width", "0%")
-}
+           .duration(duration)
+           .style("width", "0%");
+    menu[id.id] = false;
+};
 
 var loadObs = function(id) {
   unloadAll();
@@ -216,41 +223,68 @@ var loadForecasts = function(id) {
 
 d3.select("#menuItem1")
   .on("click",function () {
-      emptyLine("#menuLoader1");
-      emptyLine("#menuLoader2");
-      emptyLine("#menuLoader3");
-      loadObs();
-  })
+        var events = [];
+        menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
+        menu.menuLoader2 ? events.push(function(duration) {emptyLine(menuLoader2,duration);}) : null;
+        menu.menuLoader1 ? events.push(function(duration) {emptyLine(menuLoader1,duration);}) : null;
+        executeMenuLoaders(events,loadObs,1200);
+  });
 
 d3.select("#menuItem2")
   .on("click",function () {
-      fillLine("#menuLoader1");
-      emptyLine("#menuLoader2");
-      emptyLine("#menuLoader3");
-      loadPhysics();
-  })
+        var events = [];
+        !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
+        menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
+        menu.menuLoader2 ? events.push(function(duration) {emptyLine(menuLoader2,duration);}) : null;
+        executeMenuLoaders(events,loadPhysics,1200);
+  });
 
 d3.select("#menuItem3")
   .on("click",function () {
-      fillLine("#menuLoader1");
-      fillLine("#menuLoader2");
-      emptyLine("#menuLoader3");
-      loadAnalyse();
-  })
+        var events = [];
+        !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
+        !menu.menuLoader2 ? events.push(function(duration) {fillLine(menuLoader2,duration);}) : null;
+        menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
+        executeMenuLoaders(events,loadAnalyse,1200);
+  });
 
 d3.select("#menuItem4")
   .on("click",function () {
-      fillLine("#menuLoader1");
-      fillLine("#menuLoader2");
-      fillLine("#menuLoader3");
-      loadForecasts();
-  })
+        var events = [];
+        !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
+        !menu.menuLoader2 ? events.push(function(duration) {fillLine(menuLoader2,duration);}) : null;
+        !menu.menuLoader3 ? events.push(function(duration) {fillLine(menuLoader3,duration);}) : null;
+        executeMenuLoaders(events,loadForecasts,1200);
+  });
+
+var executeMenuLoaders = function(events, loadFn, duration) {
+    var eventDuration = duration/events.length;
+    var queue = new Queue();
+    var totalTime = 0;
+    events.forEach(function(fn){
+        queue.queueEvent(function() {fn(eventDuration)}, totalTime);
+        totalTime += eventDuration;
+    });
+    queue.queueEvent(loadFn,duration);
+};
 
 var EVENTS = { "totalTime": 0,
     "queueEvent": function(fn, t){
         setTimeout(fn, this.totalTime+t);
         this.totalTime += t;
     }
+};
+
+var Queue = function() {
+
+    var totalTime = 0;
+
+    return {
+        queueEvent : function(fn, t) {
+            setTimeout(fn, totalTime+t);
+            totalTime += t;
+        }
+    };
 };
 
 window.onresize = function () {
