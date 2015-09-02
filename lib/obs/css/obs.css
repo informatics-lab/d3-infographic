@@ -46,14 +46,12 @@
 
 #svg-wrapper #sources-histo rect{
   /*fill: #94eef7; #b7e07e*/
-  fill: #b7e07e;
-  stroke: #b7e07e;
   top: 60%;
 }
 
 #svg-wrapper #sources-histo text{
   /*fill: #94eef7; #b7e07e*/
-  stroke: slategrey;
+  stroke: black;
 }
 
 #svg-wrapper .centrealign {
@@ -73,13 +71,10 @@
 
 #svg-wrapper path.arc {
   fill: transparent;
-  stroke: slategrey;
 }
 
 #svg-wrapper path.point {
   transition: 0.25s;
-  stroke: slategrey;
-  fill: slategrey;
 }
 
 #svg-wrapper path.point.active {
