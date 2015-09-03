@@ -6,6 +6,14 @@
   transition: 2s;
 }
 
+#skill-wrapper {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  overflow: hidden;
+  transition: 2s;
+}
+
 #physics-wrapper #machine {
     height: 80%;
     margin: 0 auto;
