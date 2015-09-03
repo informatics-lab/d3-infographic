@@ -136,6 +136,7 @@ var unloadAll = function () {
           analyse.unload();
           break;
       case "forecasts":
+          forecasts.unload();
           break;
     }
     currentSection = null;
@@ -219,6 +220,7 @@ var loadAnalyse = function(id) {
 var loadForecasts = function(id) {
   unloadAll();
   currentSection = "forecasts";
+  setTimeout(function(){forecasts.load()}, 500);
 }
 
 d3.select("#menuItem1")
