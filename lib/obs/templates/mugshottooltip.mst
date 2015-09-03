@@ -2,8 +2,7 @@
 <p>{{d.text}}</p>
 <h4>{{d.type}}</h4>
 <table>
-  <tr><td>ID</td><td>{{d.stationID}}</td></tr>
   <tr><td>Location</td><td>{{d.lat}}&deg;N, {{d.lon}}&deg;W</td></tr>
-  <tr><td>Altitude</td><td>{{d.alt}}m</td></tr>
-  <tr><td>Temp</td><td>{{d.val}}&deg;C</td></tr>
+  <tr><td>Temp</td><td>{{d.temp}}&deg;C</td></tr>
+  <tr><td>Air pressure</td><td>{{d.press}} hPa</td></tr>
 </table>    

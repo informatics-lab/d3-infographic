@@ -62,6 +62,7 @@
 #svg-wrapper .mugshottooltip {
   opacity: 0;
   transition: 0.25s;
+  max-width: 20em;
 }
 
 #svg-wrapper path.land {
