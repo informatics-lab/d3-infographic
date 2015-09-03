@@ -1,77 +1,98 @@
 #obs-wrapper {
   padding: 0;
   margin: 0;
-  position: absolute;
+  margin-bottom: 10%;
+  width: 100%;
+  height: 100%;
+  position: relative;
   overflow: hidden;
   transition: 2s;
 }
 
-#obs-wrapper #globecontainer {
-  z-index: 500;
+#svg-wrapper {
+  margin-left: 3%;
 }
 
-#obs-wrapper img#mugshot {
+#obs-wrapper .text {
+  padding: 20%;
+}
+
+#obs-wrapper .text h2 {
+  font-size: 18px;
+}
+
+#obs-wrapper .text p {
+  font-size: 14px;
+}
+
+#svg-wrapper #globecontainer {
+  z-index: 500;
+  max-height: 60%;
+  padding: 3%;
+}
+
+#svg-wrapper img#mugshot {
   width: 50px;
   height: 50px;
   border-radius: 4px;
 }
 
-#obs-wrapper #sources-histo {
-  position: absolute;
-  left: 30px;
-  top: 30px;
-  width: 400px;
-  height: 70px;
+#svg-wrapper #sources-histo {
+  position: relative;
+  width: 80%;
+  height: 18%;
   z-index: 100;
 }
 
-#obs-wrapper #sources-histo rect{
-  fill: steelblue;
-  stroke: steelblue;
+#svg-wrapper #sources-histo rect{
+  /*fill: #94eef7; #b7e07e*/
+  top: 60%;
 }
 
-#obs-wrapper .centrealign {
+#svg-wrapper #sources-histo text{
+  /*fill: #94eef7; #b7e07e*/
+  stroke: black;
+}
+
+#svg-wrapper .centrealign {
   width: 100%;
   text-align: center;
 }
 
-#obs-wrapper .mugshottooltip {
+#svg-wrapper .mugshottooltip {
   opacity: 0;
   transition: 0.25s;
 }
 
-#obs-wrapper path.land {
+#svg-wrapper path.land {
   fill: #b7e07e;
   stroke: black;
 }
 
-#obs-wrapper path.arc {
+#svg-wrapper path.arc {
   fill: transparent;
-  stroke: violet;
 }
 
-#obs-wrapper path.point {
+#svg-wrapper path.point {
   transition: 0.25s;
-  stroke: violet;
-  fill: violet;
 }
 
-#obs-wrapper path.point.active {
+#svg-wrapper path.point.active {
   transition: 0.25s;
   stroke-width: 10px;
 }
 
-#obs-wrapper #exeter {
+#svg-wrapper #exeter {
   stroke: #00add0;
   fill: #00add0;
 }
 
-#obs-wrapper #outline {
+#svg-wrapper #outline {
   fill: #94eef7;
   stroke: black;
 }
 
-#obs-wrapper #atmosphere {
+#svg-wrapper #atmosphere {
   width: 0px;
   height: 0px;
   border-radius: 50%;
@@ -79,7 +100,7 @@
   box-shadow: 0px 0px 50px skyblue;
 }
 
-#obs-wrapper #tooltip{
+#svg-wrapper #tooltip{
   font-weight: 14px;
   font-family: verdana, sans-serif;
   transition: opacity 0.25s;
@@ -104,16 +125,16 @@
 
 }
 
-#obs-wrapper #tooltip h4 {
+#svg-wrapper #tooltip h4 {
   margin-top: 0px;
   margin-bottom: 10px;
 }
 
-#obs-wrapper #tooltip table td {
+#svg-wrapper #tooltip table td {
   padding: 5px;
 }
 
- #obs-wrapper #tooltip.show{
+#svg-wrapper #tooltip.show{
   transition: opacity 0.25s;
   opacity: 1;
 }
