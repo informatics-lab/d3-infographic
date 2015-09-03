@@ -1,4 +1,5 @@
 <h4>{{d.name}}</h4>
 <table>
   <tr><td>Type</td><td>{{d.type}}</td></tr>
+  <tr><td>Location</td><td>{{d.location}}</td></tr>
 </table>
