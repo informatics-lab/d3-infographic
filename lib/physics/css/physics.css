@@ -1,6 +1,22 @@
 .eqn {
   position: absolute;
   font-size: 14px;
+  background: darkseagreen;
+  padding: 0px;
+  padding-left: 6px;
+  padding-right: 2px;
+  /*top: 50vh;
+  left: 50vw;*/
+  opacity: 0.9;
+  border-radius: 10px;
+  transition: 2s;
+}
+
+#info {
+  position: absolute;
+  top: 20vh;
+  left: 20vw;
+  transition: 2s;
 }
 
 #physics-wrapper {
