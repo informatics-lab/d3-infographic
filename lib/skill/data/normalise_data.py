@@ -1,5 +1,6 @@
 from datetime import datetime
 import numpy
+import math
 
 def readFile(fname):
 	f = open(fname, 'r')
@@ -18,9 +19,12 @@ def readFile(fname):
 		except:
 			continue
 		else:
+			if math.isnan(value):
+				continue
 			datum['date'] = datetime.strptime(date, "%Y%m%d0000")
 			datum['value'] = value
 			data.append(datum)
+	print data
 	return data
 
 def getMonthAvgs(data):
@@ -36,7 +40,6 @@ def getTotalAvg(data):
 
 def normalise(data, avg, monthavgs):
 	for d in data:
-		print monthavgs, d['date'].month
 		monthAvg = monthavgs[d['date'].month - 1]
 		d['value'] += (avg - monthAvg)
 	return data
@@ -54,7 +57,7 @@ def modifyData(infile):
 	ndata = normalise(data, getTotalAvg(data), getMonthAvgs(data))
 	writeFile(ndata, outfile)
 
-modifyData('Met_Office-Anl.csv')
-modifyData('JMA_JA-Anl.csv')
+# modifyData('Met_Office-Anl.csv')
+# modifyData('JMA_JA-Anl.csv')
 modifyData('BoM_AU_UM_partner-Anl.csv')
-modifyData('NCEP_US-Anl.csv')
+#modifyData('NCEP_US-Anl.csv')
