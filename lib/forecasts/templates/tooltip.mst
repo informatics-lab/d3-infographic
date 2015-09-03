@@ -1,4 +1,4 @@
-<h4>{{d.type}}</h4>
+<h4>{{d.name}}</h4>
 <table>
-  <tr><td>Location</td><td>{{d.lat}}&deg;N, {{d.lon}}&deg;W</td></tr>
+  <tr><td>Type</td><td>{{d.type}}</td></tr>
 </table>
