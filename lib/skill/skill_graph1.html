@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<style type="text/css">
+      .axis text {
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+      }
+      .axis path,
+      .axis line {
+        fill: none;
+        stroke: #000;
+        shape-rendering: crispEdges;
+      }
+
+      .note {
+        fill: steelblue;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+      }
+      .skill {
+        stroke: steelblue;
+        stroke-width: 1.5px;
+        fill: none;
+      }
+      .hover {
+        stroke: black;
+        stroke-width: 10px;
+        fill: black;
+        opacity: 0.1;
+      }
+      #skill {
+        stroke: steelblue;
+        stroke-width: 1.5px;
+        fill: none;
+      }
+
+      .info {
+        font-weight: 14px;
+        font-family: verdana, sans-serif;
+        transition: opacity 0.25s;
+        opacity: 0;
+        position: fixed;
+        color: white;
+        background-color: black;
+        border: 2px solid #333;
+        border-radius: 7px;
+        padding: 5px;
+        z-index: 1000;
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+        background: #45484d; /* Old browsers */
+        background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+        }
+
+      .tooltip {
+        font-weight: 14px;
+        font-family: verdana, sans-serif;
+        transition: opacity 0.25s;
+        opacity: 0;
+        position: fixed;
+        color: white;
+        background-color: black;
+        border: 2px solid #333;
+        border-radius: 7px;
+        padding: 5px;
+        z-index: 1000;
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+0,000000+100;Black+3D+%231 */
+        background: #45484d; /* Old browsers */
+        background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+        }
+
+      .info h4 {
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
+
+      .info.show{
+        transition: opacity 0.25s;
+        opacity: 1;
+      }
+
+      .tooltip h4 {
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
+
+      .tooltip.show{
+        transition: opacity 0.25s;
+        opacity: 1;
+      }
+</style>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Global NWP Index</title>
+    <script src="./d3.js"></script>
+    <script src="./queue.min.js"></script>
+  </head>
+
+
+<body>
+<script type="text/javascript">
+
+var lineDuration = 8000;
+
+var margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format("%Y%m%d0000").parse;
+
+// domains for x and y being set after data load
+var x = d3.time.scale()
+    .range([0, width])
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    // .ticks(d3.time.year, 1)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .ticks(0)
+    .orient("left");
+
+var lineFunction = d3.svg.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.skill); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var radiobuttons = d3.select("body").append("form").attr("id", "radiobuttons");
+
+var monotes = [{"date": parseDate("201408010000"), "html": "<p>ENDGame introduced</p>"}];
+var dwdnotes = [{'date': parseDate('201401010000'), 'html':'<p>boo</p>'}]
+var centers = [
+    {'center':'Met Office', 'file':'data/Met_Office-Anl_norm.csv', 'notes':monotes, 'colour':"steelblue"},
+    {'center':'ECMWF', 'file':'data/ECMWF_EC-Anl_norm.csv', 'notes':[], 'colour':"red"},
+    {'center':'JMA', 'file':"data/JMA_JA-Anl_norm.csv", 'notes':[], 'colour':"green"},
+    {'center':'DWD', 'file':"data/DWD_GE-Anl_norm.csv", 'notes':[], 'colour':"orange"},
+];
+
+var q = queue();
+for (var i=0; i<centers.length; i++){
+  q.defer(d3.csv, centers[i].file)
+}
+  q.awaitAll(mkSkillObjects);
+
+function processData(data, index) {
+  data.forEach(function(d) {
+    d.date = parseDate(d.Datetime);
+    d.skill = +d.Value;
+    d.center = centers[index].center;
+    d.notes = centers[index].notes;
+    d.colour = centers[index].colour;
+    delete d.Datetime;
+    delete d.Value;
+  });
+}
+
+function mkSkillObjects(error, datasets) {
+  if (error) throw error;
+
+  for (var i=0; i<datasets.length; i++){
+    processData(datasets[i], i);
+  }
+  
+  main(datasets);
+}
+
+
+function main(datasets) {
+  var combined = [].concat.apply([], datasets);
+  
+  x.domain(d3.extent(combined, function(d) { return d.date; }));
+  y.domain(d3.extent(combined, function(d) { return d.skill; }));
+  var ptfromt = d3.time
+                  .scale()
+                  .range([0, datasets[0].length-1.0])
+                  .domain(d3.extent(datasets[0], function(d) { return d.date; }));
+
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Forcast accuracy");
+
+  function rollingLine(d, i, notes) {
+    var tfrompt = d3.time
+                  .scale()
+                  .range(d3.extent(d, function(d) { return d.date; }))
+                  .domain([0, d.length-1.0]);
+
+    var displayedNotes = [];
+
+    return function(t) {
+        var index = d.length * t;
+        var flooredX = Math.floor(index);
+        var weight = index - flooredX;
+        var interpolatedLine = d.slice(0, flooredX+1);
+
+        notes.forEach(function(el){
+          if (Date.parse(el.date) === Date.parse(interpolatedLine[interpolatedLine.length-1].date)){
+            displayedNotes.push(el);
+            updateNotes(d, displayedNotes);
+          }
+        });
+
+        if(flooredX < d.length-1.0) {
+            var weightedLineAverage = d[flooredX].skill * (1-weight) + d[flooredX+1].skill * weight;
+            interpolatedLine.push({"date": tfrompt(index),
+                                   "skill": weightedLineAverage});
+        }
+
+        return lineFunction(interpolatedLine);
+    }
+  }
+
+  var updateTooltips = function(tooltips){
+      var tooltip = d3.select("body").selectAll(".tooltip").data(tooltips);
+      tooltip.enter()
+          .append("div") 
+          .attr("class", "tooltip show")
+          .html(function(d){return d.html})
+          .style("left", function(d){return d.x + 50 + "px"})          
+          .style("top", function(d){return d.y + 50 + "px"})
+          .style("display", "block")
+      tooltip.style("z-index", "1000")
+          .classed("show", true)
+      tooltip.exit()
+          .classed("show", false)
+          .remove()
+  };
+
+  var update = function(skillsets, callback){
+    if (!callback) {callback = function(){}};
+    var combined = [].concat.apply([], skillsets);
+
+    x.domain(d3.extent(combined, function(d) { return d.date; }));
+    y.domain(d3.extent(combined, function(d) { return d.skill; }));
+
+    svg.selectAll("path.skill")
+      .data(skillsets)
+      .transition()
+        .attr('d', function(d, i){console.log(i);return lineFunction(d)})
+        .each(function(d,i){updateNotes(d, centers[i].notes)})
+
+    svg.selectAll("path.skill")
+      .data(skillsets)
+      .enter().append("path")
+      .attr("class", "path skill")
+      .attr("id", "skill")
+      .attr("d", "")
+      .style("stroke", function(d,i){return centers[i].colour})
+      .transition()
+        .duration(lineDuration)
+          .ease("linear")
+          .attrTween('d', function(d, i){return rollingLine(d, i, centers[i].notes)})
+          .each("end", function(){
+            tooltips=[];
+            updateTooltips(tooltips)
+            d3.selectAll(".note")
+              .on("mouseover", function(d){
+                tooltips.push({"html": d.html, "x": d3.event.pageX, "y": d3.event.pageY});
+                updateTooltips(tooltips);
+                svg
+                .append("path")
+                .attr('id', "hover")
+                .attr("class", "path hover")
+                .attr('d',
+                  lineFunction([
+                                  {"date": d.date, "skill": d3.min(combined, function(d){return d.skill})},
+                                  {"date": d.date, "skill": d3.max(combined, function(d){return d.skill})}
+                                ])
+                )
+              })
+              .on("mouseout", function(d){
+                // if (Math.abs(d3.mouse(this)[0] - d3.event.target.cx.baseVal.value) > 0.5){
+                // }
+                tooltips.pop();
+                updateTooltips(tooltips)
+                svg.select("#hover").remove();
+              })
+              .call(callback)
+            })
+
+    //svg.selectAll("path.skill").data(skillsets).exit().remove()
+
+
+  };
+
+  var updateNotes = function(skill, notes){
+    note = svg.selectAll(".note").data(notes, function(d){return d.date});
+    note.enter()
+        .append("circle")
+          .attr("class", "note")
+          .attr("cx", function(d){return x(d.date)})
+          .attr("cy", function(d){return y(skill[Math.floor(ptfromt(d.date))].skill)})
+          .attr("r", 0)
+          // .style("fill", "red")
+          // .style("stroke", "black")
+        .transition()
+          .attr("r", 5)
+          .each(function(d){
+            tooltips.push({"html": d.html, "x": x(d.date), "y": y(skill[Math.floor(ptfromt(d.date))].skill)});
+            updateTooltips(tooltips);
+          })
+
+    note
+      .transition().ease("sin-in-out")
+      .attr("cx", function(d){return x(d.date)})
+      .attr("cy", function(d){return y(skill[Math.floor(ptfromt(d.date))].skill)})
+      .attr("r", 5)
+
+    //note.exit().remove();
+  };
+
+  var tooltips = [];
+
+  var init = function(skillsets){
+    var showdiv = function() {
+      d3.select("body")
+      .append("div") 
+          .attr("class", "info show")
+          .attr("id", "continue")
+          .html("<p>Click to continue</p>")
+          .style("left", "50%")          
+          .style("top", "50%")
+          .style("display", "block")
+          .style("z-index", "1000")
+          .on("click", function(){
+            d3.select("body").select("#continue").remove();
+            update(skillsets);
+          })
+          .classed("show", true)
+    }
+
+    update([skillsets[0]], showdiv);
+    
+
+  };
+
+  init(datasets);
+};
+
+</script>
+</body>
+</html>
