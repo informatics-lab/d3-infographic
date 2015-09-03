@@ -229,7 +229,7 @@ d3.select("#menuItem1")
         menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
         menu.menuLoader2 ? events.push(function(duration) {emptyLine(menuLoader2,duration);}) : null;
         menu.menuLoader1 ? events.push(function(duration) {emptyLine(menuLoader1,duration);}) : null;
-        executeMenuLoaders(events,loadObs,1200);
+        executeMenuLoaders(events,loadObs,500);
   });
 
 d3.select("#menuItem2")
@@ -238,7 +238,7 @@ d3.select("#menuItem2")
         !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
         menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
         menu.menuLoader2 ? events.push(function(duration) {emptyLine(menuLoader2,duration);}) : null;
-        executeMenuLoaders(events,loadPhysics,1200);
+        executeMenuLoaders(events,loadPhysics,500);
   });
 
 d3.select("#menuItem3")
@@ -247,7 +247,7 @@ d3.select("#menuItem3")
         !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
         !menu.menuLoader2 ? events.push(function(duration) {fillLine(menuLoader2,duration);}) : null;
         menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
-        executeMenuLoaders(events,loadAnalyse,1200);
+        executeMenuLoaders(events,loadAnalyse,500);
   });
 
 d3.select("#menuItem4")
@@ -256,7 +256,7 @@ d3.select("#menuItem4")
         !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
         !menu.menuLoader2 ? events.push(function(duration) {fillLine(menuLoader2,duration);}) : null;
         !menu.menuLoader3 ? events.push(function(duration) {fillLine(menuLoader3,duration);}) : null;
-        executeMenuLoaders(events,loadForecasts,1200);
+        executeMenuLoaders(events,loadForecasts,500);
   });
 
 var executeMenuLoaders = function(events, loadFn, duration) {
