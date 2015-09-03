@@ -37,7 +37,7 @@ var slides = [
     },
     {
         icon:"images/4-forecasts-icon.svg",
-        txt:"100 million people use<br/>these forecats every day",
+        txt:"100 million people use<br/>these forecasts every day",
         image:"images/slides/backg-5.jpg",
         link:"images/find-out-more-cloud.svg"
     }
