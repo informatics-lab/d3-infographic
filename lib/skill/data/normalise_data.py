@@ -55,6 +55,6 @@ def modifyData(infile):
 	writeFile(ndata, outfile)
 
 modifyData('Met_Office-Anl.csv')
-modifyData('ECMWF_EC-Anl.csv')
 modifyData('JMA_JA-Anl.csv')
-modifyData('DWD_GE-Anl.csv')
+modifyData('BoM_AU_UM_partner-Anl.csv')
+modifyData('NCEP_US-Anl.csv')
