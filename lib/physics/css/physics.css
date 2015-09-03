@@ -1,4 +1,17 @@
+.eqn {
+  position: absolute;
+  font-size: 14px;
+}
+
 #physics-wrapper {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  overflow: hidden;
+  transition: 2s;
+}
+
+#skill-wrapper {
   padding: 0;
   margin: 0;
   position: absolute;
