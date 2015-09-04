@@ -9,10 +9,6 @@
   transition: 2s;
 }
 
-#svg-wrapper {
-  margin-left: 3%;
-}
-
 #forecast-wrapper .text {
   padding: 20%;
 }
