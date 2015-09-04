@@ -4,7 +4,7 @@ An interactive infographic explaining what the Met Office does.
 
 ## Contributing
 
-```
+```shell
 # Clone the repository and enter the directory
 git clone git@github.com:met-office-lab/d3-infographic.git && cd d3-infographic
 
@@ -19,6 +19,6 @@ grunt serve
 
 ## Deployment
 
-```
+```shell
 grunt deploy
 ```
