@@ -13,31 +13,31 @@ var currentSection = null;
 
 var slides = [
     {
-        txt:"You can't have a weather forecast<br/>without what the Met Office does",
+        txt:"The Met Office makes weather forecasts possible",
         image:"images/slides/backg-1.jpg",
         link:"images/find-out-why-cloud.svg"
     },
     {
         icon:"images/1-obs-icon.svg",
-        txt:"Every day, we gather<br/>17 million observations<br/>from around the globe",
+        txt:"Every day we collect more than 17 million observations",
         image:"images/slides/backg-2.jpg",
         link:"images/next-cloud.svg"
     },
     {
         icon:"images/2-physics-icon.svg",
-        txt:"We run these through 7 million lines<br/>of code, using the laws of physics to<br/>create a weather forecast",
+        txt:"We run these through seven million lines<br/>of code, using the laws of physics to predict the future",
         image:"images/slides/backg-3.jpg",
         link:"images/next-cloud.svg"
     },
     {
         icon:"images/3-analyse-icon.svg",
-        txt:"We interpret, analyse<br/>and improve these using<br/>over 160 years experience",
+        txt:"We display and interpret the resulting data to create<br/>useful forecasts using over 160 years of experience",
         image:"images/slides/backg-4.jpg",
         link:"images/next-cloud.svg"
     },
     {
         icon:"images/4-forecasts-icon.svg",
-        txt:"100 million people use<br/>these forecasts every day",
+        txt:"Over 100 million people use our forecasts<br/>every day and more than ten countries<br/>around the world use Met Office systems",
         image:"images/slides/backg-5.jpg",
         link:"images/find-out-more-cloud.svg"
     }
