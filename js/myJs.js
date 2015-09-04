@@ -13,29 +13,34 @@ var currentSection = null;
 
 var slides = [
     {
+        hash:"slide0",
         txt:"You can't have a weather forecast<br/>without what the Met Office does",
         image:"images/slides/backg-1.jpg",
         link:"images/find-out-why-cloud.svg"
     },
     {
+        hash:"slide1",
         icon:"images/1-obs-icon.svg",
         txt:"Every day, we gather<br/>17 million observations<br/>from around the globe",
         image:"images/slides/backg-2.jpg",
         link:"images/next-cloud.svg"
     },
     {
+        hash:"slide2",
         icon:"images/2-physics-icon.svg",
         txt:"We run these through 7 million lines<br/>of code, using the laws of physics to<br/>create a weather forecast",
         image:"images/slides/backg-3.jpg",
         link:"images/next-cloud.svg"
     },
     {
+        hash:"slide3",
         icon:"images/3-analyse-icon.svg",
         txt:"We interpret, analyse<br/>and improve these using<br/>over 160 years experience",
         image:"images/slides/backg-4.jpg",
         link:"images/next-cloud.svg"
     },
     {
+        hash:"slide4",
         icon:"images/4-forecasts-icon.svg",
         txt:"100 million people use<br/>these forecats every day",
         image:"images/slides/backg-5.jpg",
@@ -46,7 +51,7 @@ var slides = [
 var loadSlide = function(index) {
 
     var infographic = d3.select("#infographic");
-
+    window.location.hash = slides[index].hash;
     infographic
         .style("background-image","url("+slides[index].image+")");
 
@@ -294,8 +299,18 @@ window.onresize = function () {
 };
 
 window.onload = function () {
-    console.log("loaded");
+    //console.log("loaded");
+    console.log(location.hash);
     fillViewport();
-    setTimeout(loadSlide(0), 2000);
-    toggleMenu();
+    if ( location.hash.substring(0,6) == "#slide" ){
+      var slidenum = Number(location.hash.substring(6,7));
+      setTimeout(loadSlide(slidenum), 2000);
+    }else{
+      setTimeout(loadSlide(0), 2000);
+    }
+    //toggleMenu();
+};
+
+window.onhashchange = function(){
+    console.log('hashchange', location.hash);
 };
