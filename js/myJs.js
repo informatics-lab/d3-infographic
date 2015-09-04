@@ -302,6 +302,15 @@ window.onload = function () {
     //console.log("loaded");
     console.log(location.hash);
     fillViewport();
-    setTimeout(loadSlide(0), 2000);
-    toggleMenu();
+    if ( location.hash.substring(0,6) == "#slide" ){
+      var slidenum = Number(location.hash.substring(6,7));
+      setTimeout(loadSlide(slidenum), 2000);
+    }else{
+      setTimeout(loadSlide(0), 2000);
+    }
+    //toggleMenu();
+};
+
+window.onhashchange = function(){
+    console.log('hashchange', location.hash);
 };
