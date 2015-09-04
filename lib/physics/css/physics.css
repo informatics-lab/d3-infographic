@@ -7,14 +7,42 @@
   padding-right: 2px;
   opacity: 0.9;
   border-radius: 10px;
-  transition: 2s;
 }
+
+@-webkit-keyframes wobble {
+  16.65% {
+    -webkit-transform: translateY(8px);
+    transform: translateY(8px);
+  }
+  33.3% {
+    -webkit-transform: translateY(-6px);
+    transform: translateY(-6px);
+  }
+  49.95% {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  66.6% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+  }
+  83.25% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+.wobble { -webkit-animation: wobble 3s infinite; }
 
 #info {
   position: absolute;
-  top: 30vh;
-  left: 50vw;
-  transition: 2s;
+  top: 30%;
+  left: 42%;
+  width: 30%;
+  height: 20%;
 }
 
 #info p {
@@ -29,7 +57,6 @@
   margin: 0;
   position: absolute;
   overflow: hidden;
-  transition: 2s;
 }
 
 #skill-wrapper {
@@ -37,10 +64,28 @@
   margin: 0;
   position: absolute;
   overflow: hidden;
-  transition: 2s;
 }
 
 #physics-wrapper #machine {
     height: 80%;
     margin: 0 auto;
+}
+
+
+svg.globe {
+  position: absolute;
+  left: 20px;
+  top: 200px;
+  width: 300px;
+  height: 300px;
+}
+
+#outline {
+  fill: #94eef7;
+  stroke: black;
+}
+
+path.land {
+  fill: #b7e07e;
+  stroke: black;
 }

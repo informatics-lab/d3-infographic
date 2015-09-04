@@ -1,4 +1,3 @@
-{"eqn": "$$\\frac{D\\vec{v}}{Dt}+2\\vec{\\Omega}\\times\\vec{v} = - \\frac{\\nabla p}{\\rho} - \\nabla \\Phi + \\nu \\nabla^2 \\vec{v} \\; +(\\textrm{friction})$$",
-"info": "Some stuff",
+{"eqn": "$$\\frac{D\\vec{v}}{Dt}+2\\vec{\\Omega}\\times\\vec{v} = - \\frac{\\nabla p}{\\rho} - \\nabla \\Phi + \\nu \\nabla^2 \\vec{v}$$",
+"info": "conservation of momentum",
 "top": "70vh", "left": "50vw"}
-
