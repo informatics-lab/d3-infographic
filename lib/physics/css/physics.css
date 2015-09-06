@@ -11,20 +11,20 @@
 
 @-webkit-keyframes wobble {
   16.65% {
-    -webkit-transform: translateY(8px);
-    transform: translateY(8px);
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
   }
   33.3% {
-    -webkit-transform: translateY(-6px);
-    transform: translateY(-6px);
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
   }
   49.95% {
-    -webkit-transform: translateY(4px);
-    transform: translateY(4px);
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
   }
   66.6% {
-    -webkit-transform: translateY(-2px);
-    transform: translateY(-2px);
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
   }
   83.25% {
     -webkit-transform: translateY(1px);
@@ -40,16 +40,19 @@
 #info {
   position: absolute;
   top: 30%;
-  left: 42%;
-  width: 30%;
+  left: 45%;
+  width: 16%;
   height: 20%;
+  /*font-size: 90%;*/
 }
 
 #info p {
 	font-size: 20px;
 }
 
-#info h1 {
+#info #infoeqn {
+  height: 60%;
+  font-size: 90%;
 }
 
 #physics-wrapper {
@@ -67,6 +70,10 @@
 }
 
 #physics-wrapper #machine {
+    position: absolute;
+    top: 0%;
+    left: 35%;
+    width: 30%;
     height: 80%;
     margin: 0 auto;
 }
