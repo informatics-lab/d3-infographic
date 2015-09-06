@@ -54,6 +54,13 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
   }
 
+.info#center {
+  background-color: white;
+  padding: 0px;
+  border-color: #ffffff;
+  background: #ffffff;
+}
+
 .tooltip {
   font-weight: 14px;
   font-family: verdana, sans-serif;
