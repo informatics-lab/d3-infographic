@@ -100,3 +100,10 @@ path.land {
   fill: #b7e07e;
   stroke: black;
 }
+
+.label {
+  position: absolute;
+  font-weight: 14px;
+  font-family: verdana, sans-serif;
+  color: black;
+}
