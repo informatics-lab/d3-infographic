@@ -1,86 +1,94 @@
-#obs-wrapper {
+#forecast-wrapper {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 10%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
   transition: 2s;
 }
 
-#obs-wrapper .text {
-  padding: 10% 18% 0 0;
+#forecast-wrapper .text {
+  padding: 20%;
 }
 
-/*#obs-wrapper .text h2 {*/
-  /*font-size: 18px;*/
-/*}*/
+#forecast-wrapper .text h2 {
+  font-size: 18px;
+}
 
-/*#obs-wrapper .text p {*/
-  /*font-size: 14px;*/
-/*}*/
+#forecast-wrapper .text p {
+  font-size: 14px;
+}
 
-#obs-wrapper #svg-wrapper #globecontainer {
+#svg-wrapper #globecontainer {
   z-index: 500;
+  max-height: 60%;
+  padding: 3%;
 }
 
-#obs-wrapper #svg-wrapper img#mugshot {
+#svg-wrapper img#mugshot {
   width: 50px;
   height: 50px;
   border-radius: 4px;
 }
 
-#obs-wrapper #svg-wrapper #sources-histo {
+#svg-wrapper #sources-histo {
   position: relative;
   width: 80%;
   height: 18%;
   z-index: 100;
 }
 
-#obs-wrapper #svg-wrapper #sources-histo rect{
+#svg-wrapper #sources-histo rect{
   /*fill: #94eef7; #b7e07e*/
   top: 60%;
 }
 
-#obs-wrapper #svg-wrapper #sources-histo text{
+#svg-wrapper #sources-histo text{
   /*fill: #94eef7; #b7e07e*/
   stroke: black;
 }
 
-#obs-wrapper #svg-wrapper .centrealign {
+#svg-wrapper .centrealign {
   width: 100%;
   text-align: center;
 }
 
-#obs-wrapper #svg-wrapper .mugshottooltip {
+#svg-wrapper .mugshottooltip {
   opacity: 0;
   transition: 0.25s;
-  max-width: 20em;
 }
 
-#obs-wrapper #svg-wrapper path.land {
+#svg-wrapper path.land {
   fill: #b7e07e;
   stroke: black;
 }
 
-#obs-wrapper #svg-wrapper path.arc {
+#svg-wrapper path.arc {
   fill: transparent;
 }
 
-#obs-wrapper #svg-wrapper path.point {
+#svg-wrapper path.point {
   transition: 0.25s;
 }
 
-#obs-wrapper #svg-wrapper path.point.active {
+#svg-wrapper path.point.active {
   transition: 0.25s;
   stroke-width: 10px;
 }
 
-#obs-wrapper #svg-wrapper #exeter {
+#svg-wrapper #exeter {
   stroke: #00add0;
   fill: #00add0;
 }
 
-#obs-wrapper #svg-wrapper #outline {
+#svg-wrapper #outline {
   fill: #94eef7;
   stroke: black;
 }
 
-#obs-wrapper #svg-wrapper #atmosphere {
+#svg-wrapper #atmosphere {
   width: 0px;
   height: 0px;
   border-radius: 50%;
@@ -88,7 +96,7 @@
   box-shadow: 0px 0px 50px skyblue;
 }
 
-#obs-wrapper #svg-wrapper #tooltip{
+#svg-wrapper #tooltip{
   font-weight: 14px;
   font-family: verdana, sans-serif;
   transition: opacity 0.25s;
@@ -113,16 +121,16 @@
 
 }
 
-#obs-wrapper #svg-wrapper #tooltip h4 {
+#svg-wrapper #tooltip h4 {
   margin-top: 0px;
   margin-bottom: 10px;
 }
 
-#obs-wrapper #svg-wrapper #tooltip table td {
+#svg-wrapper #tooltip table td {
   padding: 5px;
 }
 
-#obs-wrapper #svg-wrapper #tooltip.show{
+#svg-wrapper #tooltip.show{
   transition: opacity 0.25s;
   opacity: 1;
 }
