@@ -13,36 +13,40 @@ var currentSection = null;
 
 var slides = [
     {
+<<<<<<< HEAD
         hash:"slide0",
         txt:"You can't have a weather forecast<br/>without what the Met Office does",
+=======
+        txt:"The Met Office makes weather forecasts possible",
+>>>>>>> master
         image:"images/slides/backg-1.jpg",
         link:"images/find-out-why-cloud.svg"
     },
     {
         hash:"slide1",
         icon:"images/1-obs-icon.svg",
-        txt:"Every day, we gather<br/>17 million observations<br/>from around the globe",
+        txt:"Every day we collect more than 17 million observations",
         image:"images/slides/backg-2.jpg",
         link:"images/next-cloud.svg"
     },
     {
         hash:"slide2",
         icon:"images/2-physics-icon.svg",
-        txt:"We run these through 7 million lines<br/>of code, using the laws of physics to<br/>create a weather forecast",
+        txt:"We run these through seven million lines<br/>of code, using the laws of physics to predict the future",
         image:"images/slides/backg-3.jpg",
         link:"images/next-cloud.svg"
     },
     {
         hash:"slide3",
         icon:"images/3-analyse-icon.svg",
-        txt:"We interpret, analyse<br/>and improve these using<br/>over 160 years experience",
+        txt:"We display and interpret the resulting data to create<br/>useful forecasts using over 160 years of experience",
         image:"images/slides/backg-4.jpg",
         link:"images/next-cloud.svg"
     },
     {
         hash:"slide4",
         icon:"images/4-forecasts-icon.svg",
-        txt:"100 million people use<br/>these forecats every day",
+        txt:"Over 100 million people use our forecasts<br/>every day and more than ten countries<br/>around the world use Met Office systems",
         image:"images/slides/backg-5.jpg",
         link:"images/find-out-more-cloud.svg"
     }
@@ -204,7 +208,7 @@ var loadObs = function(id) {
   unloadAll();
   currentSection = "obs";
   d3.select("#infographic")
-      .style("background-image","url(/lib/obs/img/globe_washed.jpeg)");
+      .style("background-image","url(images/globe_washed.jpeg)");
   setTimeout(function(){obs.load()}, 500);
 }
 
@@ -212,56 +216,92 @@ var loadPhysics = function(id) {
   unloadAll();
   currentSection = "physics";
   d3.select("#infographic")
-      .style("background-image","url(/lib/obs/img/globe_washed.jpeg)");
+      .style("background-image","url(images/globe_washed.jpeg)");
   setTimeout(function(){physics.load()}, 500);
 }
 
 var loadAnalyse = function(id) {
   unloadAll();
   currentSection = "analyse";
+    d3.select("#infographic")
+        .style("background-image","url(images/globe_washed.jpeg)");
   setTimeout(function(){analyse.load()}, 500);
 }
 
 var loadForecasts = function(id) {
   unloadAll();
   currentSection = "forecasts";
+    d3.select("#infographic")
+        .style("background-image","url(images/globe_washed.jpeg)");
   setTimeout(function(){forecasts.load()}, 500);
 }
 
 d3.select("#menuItem1")
   .on("click",function () {
-        var events = [];
-        menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
-        menu.menuLoader2 ? events.push(function(duration) {emptyLine(menuLoader2,duration);}) : null;
-        menu.menuLoader1 ? events.push(function(duration) {emptyLine(menuLoader1,duration);}) : null;
-        executeMenuLoaders(events,loadObs,500);
+        if(currentSection!="obs") {
+            var events = [];
+            menu.menuLoader3 ? events.push(function (duration) {
+                emptyLine(menuLoader3, duration);
+            }) : null;
+            menu.menuLoader2 ? events.push(function (duration) {
+                emptyLine(menuLoader2, duration);
+            }) : null;
+            menu.menuLoader1 ? events.push(function (duration) {
+                emptyLine(menuLoader1, duration);
+            }) : null;
+            executeMenuLoaders(events, loadObs, 500);
+        }
   });
 
 d3.select("#menuItem2")
   .on("click",function () {
-        var events = [];
-        !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
-        menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
-        menu.menuLoader2 ? events.push(function(duration) {emptyLine(menuLoader2,duration);}) : null;
-        executeMenuLoaders(events,loadPhysics,500);
+        if(currentSection!="physics") {
+            var events = [];
+            !menu.menuLoader1 ? events.push(function (duration) {
+                fillLine(menuLoader1, duration);
+            }) : null;
+            menu.menuLoader3 ? events.push(function (duration) {
+                emptyLine(menuLoader3, duration);
+            }) : null;
+            menu.menuLoader2 ? events.push(function (duration) {
+                emptyLine(menuLoader2, duration);
+            }) : null;
+            executeMenuLoaders(events, loadPhysics, 500);
+        }
   });
 
 d3.select("#menuItem3")
   .on("click",function () {
-        var events = [];
-        !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
-        !menu.menuLoader2 ? events.push(function(duration) {fillLine(menuLoader2,duration);}) : null;
-        menu.menuLoader3 ? events.push(function(duration) {emptyLine(menuLoader3,duration);}) : null;
-        executeMenuLoaders(events,loadAnalyse,500);
+        if(currentSection!="analyse") {
+            var events = [];
+            !menu.menuLoader1 ? events.push(function (duration) {
+                fillLine(menuLoader1, duration);
+            }) : null;
+            !menu.menuLoader2 ? events.push(function (duration) {
+                fillLine(menuLoader2, duration);
+            }) : null;
+            menu.menuLoader3 ? events.push(function (duration) {
+                emptyLine(menuLoader3, duration);
+            }) : null;
+            executeMenuLoaders(events, loadAnalyse, 500);
+        }
   });
 
 d3.select("#menuItem4")
   .on("click",function () {
-        var events = [];
-        !menu.menuLoader1 ? events.push(function(duration) {fillLine(menuLoader1,duration);}) : null;
-        !menu.menuLoader2 ? events.push(function(duration) {fillLine(menuLoader2,duration);}) : null;
-        !menu.menuLoader3 ? events.push(function(duration) {fillLine(menuLoader3,duration);}) : null;
-        executeMenuLoaders(events,loadForecasts,500);
+        if(currentSection!="forecasts") {
+            var events = [];
+            !menu.menuLoader1 ? events.push(function (duration) {
+                fillLine(menuLoader1, duration);
+            }) : null;
+            !menu.menuLoader2 ? events.push(function (duration) {
+                fillLine(menuLoader2, duration);
+            }) : null;
+            !menu.menuLoader3 ? events.push(function (duration) {
+                fillLine(menuLoader3, duration);
+            }) : null;
+            executeMenuLoaders(events, loadForecasts, 500);
+        }
   });
 
 var executeMenuLoaders = function(events, loadFn, duration) {
@@ -299,8 +339,11 @@ window.onresize = function () {
 };
 
 window.onload = function () {
+<<<<<<< HEAD
     //console.log("loaded");
     console.log(location.hash);
+=======
+>>>>>>> master
     fillViewport();
     if ( location.hash.substring(0,6) == "#slide" ){
       var slidenum = Number(location.hash.substring(6,7));
