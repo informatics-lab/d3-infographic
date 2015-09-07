@@ -13,29 +13,34 @@ var currentSection = null;
 
 var slides = [
     {
+        hash:"slide0",
         txt:"The Met Office makes weather forecasts possible",
         image:"images/slides/backg-1.jpg",
         link:"images/find-out-why-cloud.svg"
     },
     {
+        hash:"slide1",
         icon:"images/1-obs-icon.svg",
         txt:"Every day we collect more than 17 million observations",
         image:"images/slides/backg-2.jpg",
         link:"images/next-cloud.svg"
     },
     {
+        hash:"slide2",
         icon:"images/2-physics-icon.svg",
         txt:"We run these through seven million lines<br/>of code, using the laws of physics to predict the future",
         image:"images/slides/backg-3.jpg",
         link:"images/next-cloud.svg"
     },
     {
+        hash:"slide3",
         icon:"images/3-analyse-icon.svg",
         txt:"We display and interpret the resulting data to create<br/>useful forecasts using over 160 years of experience",
         image:"images/slides/backg-4.jpg",
         link:"images/next-cloud.svg"
     },
     {
+        hash:"slide4",
         icon:"images/4-forecasts-icon.svg",
         txt:"Over 100 million people use our forecasts<br/>every day and more than ten countries<br/>around the world use Met Office systems",
         image:"images/slides/backg-5.jpg",
@@ -46,7 +51,7 @@ var slides = [
 var loadSlide = function(index) {
 
     var infographic = d3.select("#infographic");
-
+    window.location.hash = slides[index].hash;
     infographic
         .style("background-image","url("+slides[index].image+")");
 
@@ -82,6 +87,11 @@ var loadSlide = function(index) {
         .style("margin-left","0px")
         .style("opacity","1");
 
+   infographic.append("p").attr('class','slideProgress').
+   html("<span id='slideProg0' class='viewed' >•</span><span id='slideProg1'>•</span><span id='slideProg2'>•</span><span id='slideProg3'>•</span>");
+
+
+
     if (index === slides.length-1) {
         toggleMenu();
     }
@@ -113,6 +123,11 @@ var unloadSlide = function(index) {
         .style("opacity","0")
         .remove();
 
+    infographic.select(".slideProgress")
+      .transition()
+      .duration(500)
+      .style("opacity","0")
+      .remove();
 };
 
 var unloadAllSlides = function () {
@@ -332,5 +347,18 @@ window.onresize = function () {
 window.onload = function () {
     fillViewport();
     setTimeout(loadSlide(0), 2000);
-    toggleMenu();
+    //toggleMenu();
+    /*
+    if ( location.hash.substring(0,6) == "#slide" ){
+      var slidenum = Number(location.hash.substring(6,7));
+      setTimeout(loadSlide(slidenum), 2000);
+    }else{
+      setTimeout(loadSlide(0), 2000);
+    }
+    */
+    //toggleMenu();
+};
+
+window.onhashchange = function(){
+    console.log('hashchange', location.hash);
 };

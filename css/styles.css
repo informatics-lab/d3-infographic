@@ -56,6 +56,16 @@
     top:-2%;
 }
 
+#infographic p.slideProgress span {
+    padding: 0 1%;
+    font-size: 300%;
+    text-shadow: 2px 1px #888;
+}
+
+#infographic p.slideProgress span.viewed {
+    color: rgb(202,208,25);
+}
+
 #logo {
     position: absolute;
     z-index: 1099;
