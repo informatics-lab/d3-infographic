@@ -84,8 +84,29 @@ var loadSlide = function(index) {
 
     if (index === slides.length-1) {
         toggleMenu();
-    }
+    } else {
 
+        infographic.append("p")
+            .attr("class", "slide-progress");
+
+        for (var i = 0; i < slides.length; i++) {
+
+            d3.select(".slide-progress")
+                .append("span")
+                .attr("id", "slide-progress-" + i)
+                .text("•");
+
+            if (i <= index) {
+                d3.select("#slide-progress-" + i)
+                    .attr("class", "seen");
+            }
+        }
+
+        infographic.select(".slide-progress")
+            .transition()
+            .duration(1000)
+            .style("opacity", "1");
+    }
 };
 
 var unloadSlide = function(index) {
@@ -113,6 +134,14 @@ var unloadSlide = function(index) {
         .style("opacity","0")
         .remove();
 
+    infographic.select(".slide-progress")
+        .transition()
+        .duration(500)
+        .style("opacity","0");
+
+    infographic.select(".slide-progress")
+        .html("")
+        .remove();
 };
 
 var unloadAllSlides = function () {
@@ -121,13 +150,13 @@ var unloadAllSlides = function () {
     currentSlide = -1;
   }
     d3.select("#menuItem1")
-        .style("color","lightgray");
+        .style("color",null);
     d3.select("#menuItem2")
-        .style("color","lightgray");
+        .style("color",null);
     d3.select("#menuItem3")
-        .style("color","lightgray");
+        .style("color",null);
     d3.select("#menuItem4")
-        .style("color","lightgray");
+        .style("color",null);
 };
 
 var unloadAll = function () {
@@ -152,11 +181,11 @@ var unloadAll = function () {
 }
 
 var nextSlide = function() {
-
     if (currentSlide <= slides.length-2) {
-        unloadSlide(currentSlide);
+        var queue = new Queue();
+        queue.queueEvent(function(){unloadSlide(currentSlide)},0);
         currentSlide++;
-        setTimeout(function(){loadSlide(currentSlide)}, 500);
+        queue.queueEvent(function(){loadSlide(currentSlide)}, 500);
     } else {
       console.log("end of slides..");
       loadObs();
