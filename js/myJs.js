@@ -13,12 +13,8 @@ var currentSection = null;
 
 var slides = [
     {
-<<<<<<< HEAD
         hash:"slide0",
-        txt:"You can't have a weather forecast<br/>without what the Met Office does",
-=======
         txt:"The Met Office makes weather forecasts possible",
->>>>>>> master
         image:"images/slides/backg-1.jpg",
         link:"images/find-out-why-cloud.svg"
     },
@@ -90,6 +86,11 @@ var loadSlide = function(index) {
         .duration(1000)
         .style("margin-left","0px")
         .style("opacity","1");
+
+   infographic.append("p").attr('class','slideProgress').
+   html("<span id='slideProg0' class='viewed' >•</span><span id='slideProg1'>•</span><span id='slideProg2'>•</span><span id='slideProg3'>•</span>");
+
+
 
     if (index === slides.length-1) {
         toggleMenu();
@@ -339,11 +340,6 @@ window.onresize = function () {
 };
 
 window.onload = function () {
-<<<<<<< HEAD
-    //console.log("loaded");
-    console.log(location.hash);
-=======
->>>>>>> master
     fillViewport();
     if ( location.hash.substring(0,6) == "#slide" ){
       var slidenum = Number(location.hash.substring(6,7));
