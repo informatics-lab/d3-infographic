@@ -120,7 +120,15 @@ var unloadAllSlides = function () {
     unloadSlide(currentSlide);
     currentSlide = -1;
   }
-}
+    d3.select("#menuItem1")
+        .style("color","lightgray");
+    d3.select("#menuItem2")
+        .style("color","lightgray");
+    d3.select("#menuItem3")
+        .style("color","lightgray");
+    d3.select("#menuItem4")
+        .style("color","lightgray");
+};
 
 var unloadAll = function () {
   unloadAllSlides();
@@ -197,7 +205,11 @@ var emptyLine = function(id, duration) {
 
 var loadObs = function(id) {
   unloadAll();
-  currentSection = "obs";
+
+    d3.select("#menuItem1")
+        .style("color","rgb(202,208,25)");
+
+    currentSection = "obs";
   d3.select("#infographic")
       .style("background-image","url(images/globe_washed.jpeg)");
   setTimeout(function(){obs.load()}, 500);
@@ -205,6 +217,10 @@ var loadObs = function(id) {
 
 var loadPhysics = function(id) {
   unloadAll();
+
+    d3.select("#menuItem2")
+        .style("color","rgb(202,208,25)");
+
   currentSection = "physics";
   d3.select("#infographic")
       .style("background-image","url(images/globe_washed.jpeg)");
@@ -213,7 +229,11 @@ var loadPhysics = function(id) {
 
 var loadAnalyse = function(id) {
   unloadAll();
-  currentSection = "analyse";
+
+    d3.select("#menuItem3")
+        .style("color","rgb(202,208,25)");
+
+    currentSection = "analyse";
     d3.select("#infographic")
         .style("background-image","url(images/globe_washed.jpeg)");
   setTimeout(function(){analyse.load()}, 500);
@@ -221,7 +241,11 @@ var loadAnalyse = function(id) {
 
 var loadForecasts = function(id) {
   unloadAll();
-  currentSection = "forecasts";
+
+    d3.select("#menuItem4")
+        .style("color","rgb(202,208,25)");
+
+    currentSection = "forecasts";
     d3.select("#infographic")
         .style("background-image","url(images/globe_washed.jpeg)");
   setTimeout(function(){forecasts.load()}, 500);
@@ -264,6 +288,7 @@ d3.select("#menuItem2")
 d3.select("#menuItem3")
   .on("click",function () {
         if(currentSection!="analyse") {
+
             var events = [];
             !menu.menuLoader1 ? events.push(function (duration) {
                 fillLine(menuLoader1, duration);
@@ -306,17 +331,8 @@ var executeMenuLoaders = function(events, loadFn, duration) {
     queue.queueEvent(loadFn,duration);
 };
 
-var EVENTS = { "totalTime": 0,
-    "queueEvent": function(fn, t){
-        setTimeout(fn, this.totalTime+t);
-        this.totalTime += t;
-    }
-};
-
 var Queue = function() {
-
     var totalTime = 0;
-
     return {
         queueEvent : function(fn, t) {
             setTimeout(fn, totalTime+t);
@@ -332,5 +348,4 @@ window.onresize = function () {
 window.onload = function () {
     fillViewport();
     setTimeout(loadSlide(0), 2000);
-    toggleMenu();
 };

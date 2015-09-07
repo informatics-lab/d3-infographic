@@ -81,8 +81,17 @@
     height: 100%;
 }
 
-#menu .menuItem img {
-    height:100%;
+#menu .menuItem a {
+    text-decoration: none;
+    color: lightgray;
+    transition: 200ms;
+    line-height: 100%;
+    font-family: Rokkitt;
+    font-size:large;
+}
+
+#menu .menuItem a:hover {
+    color: white;
 }
 
 #menu .menuLoader {
@@ -99,7 +108,7 @@
 }
 
 #menu .progress-bar {
-    background-color: white;
+    background-color: rgb(202,208,25);
     opacity: 1;
 }
 
