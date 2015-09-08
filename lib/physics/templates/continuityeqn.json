@@ -1,3 +1,3 @@
 {"eqn": "$$\\frac{\\partial \\rho}{\\partial t} + \\vec{\\nabla}\\cdot (\\vec{v}\\rho) = 0$$",
-"info": "continuity equation",
+"info": "The continuity equation makes sure that we dont create or destroy any mass.",
 "top": "40vh", "left": "20vw"}

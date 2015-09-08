@@ -377,5 +377,6 @@ window.onresize = function () {
 
 window.onload = function () {
     fillViewport();
+    toggleMenu();
     setTimeout(loadSlide(0), 2000);
 };
