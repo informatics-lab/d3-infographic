@@ -25,6 +25,10 @@
   text-align: left;
 }
 
+#forecast-wrapper h2 {
+  text-align: left;
+}
+
 #svg-wrapper #globecontainer {
   z-index: 500;
   max-height: 60%;
