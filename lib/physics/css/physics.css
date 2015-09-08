@@ -39,8 +39,8 @@
 
 #info {
   position: absolute;
-  top: 30%;
-  left: 45%;
+  top: 29%;
+  left: 43%;
   width: 16%;
   height: 20%;
   /*font-size: 90%;*/
@@ -51,7 +51,7 @@
 }
 
 #info #infoeqn {
-  height: 60%;
+  height: 40%;
   font-size: 90%;
 }
 
@@ -72,9 +72,8 @@
 #physics-wrapper #machine {
     position: absolute;
     top: 0%;
-    left: 35%;
-    width: 30%;
-    height: 80%;
+    left: 15%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -111,4 +110,16 @@ path.land {
   font-weight: 14px;
   font-family: verdana, sans-serif;
   color: black;
+}
+
+#physics-wrapper .text {
+  padding-top: 40%;
+  padding-right: 15%;
+}
+
+#physics-wrapper #clickhere {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  bottom: 12%;
 }
