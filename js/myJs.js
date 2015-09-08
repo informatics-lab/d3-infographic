@@ -16,7 +16,7 @@ var slides = [
     {
         txt:"The Met Office makes weather forecasts possible",
         image:"images/slides/backg-1.jpg",
-        link:"images/find-out-why-cloud.svg"
+        link:"images/next-cloud.svg"
     },
     {
         icon:"images/1-obs-icon.svg",
