@@ -21,6 +21,10 @@
   font-size: 14px;
 }
 
+#forecast-wrapper p {
+  text-align: left;
+}
+
 #svg-wrapper #globecontainer {
   z-index: 500;
   max-height: 60%;

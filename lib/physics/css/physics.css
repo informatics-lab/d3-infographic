@@ -78,6 +78,11 @@
     margin: 0 auto;
 }
 
+#physics-wrapper p {
+  text-align: left;
+}
+
+
 
 svg.globe {
   position: absolute;
