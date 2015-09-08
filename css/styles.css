@@ -101,10 +101,12 @@
     transition: 200ms;
     line-height: 100%;
     font-family: Rokkitt;
+    font-size:180%;
 }
 
 #menu .menuItem a:hover {
     color: white;
+    letter-spacing: 2px;
 }
 
 #menu .menuLoader {
