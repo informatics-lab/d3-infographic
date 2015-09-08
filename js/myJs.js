@@ -10,6 +10,7 @@ var menu = {
 };
 var currentSlide = 0;
 var currentSection = null;
+var pageLoadDelay = 2000;
 
 var slides = [
     {
@@ -241,7 +242,7 @@ var loadObs = function(id) {
     currentSection = "obs";
   d3.select("#infographic")
       .style("background-image","url(images/globe_washed.jpeg)");
-  setTimeout(function(){obs.load()}, 500);
+  setTimeout(function(){obs.load()}, pageLoadDelay);
 }
 
 var loadPhysics = function(id) {
@@ -253,7 +254,7 @@ var loadPhysics = function(id) {
   currentSection = "physics";
   d3.select("#infographic")
       .style("background-image","url(images/globe_washed.jpeg)");
-  setTimeout(function(){physics.load()}, 500);
+  setTimeout(function(){physics.load()}, pageLoadDelay);
 }
 
 var loadAnalyse = function(id) {
@@ -265,7 +266,7 @@ var loadAnalyse = function(id) {
     currentSection = "analyse";
     d3.select("#infographic")
         .style("background-image","url(images/globe_washed.jpeg)");
-  setTimeout(function(){analyse.load()}, 500);
+  setTimeout(function(){analyse.load()}, pageLoadDelay);
 }
 
 var loadForecasts = function(id) {
@@ -277,7 +278,7 @@ var loadForecasts = function(id) {
     currentSection = "forecasts";
     d3.select("#infographic")
         .style("background-image","url(images/globe_washed.jpeg)");
-  setTimeout(function(){forecasts.load()}, 500);
+  setTimeout(function(){forecasts.load()}, pageLoadDelay);
 }
 
 d3.select("#menuItem1")
@@ -293,7 +294,7 @@ d3.select("#menuItem1")
             menu.menuLoader1 ? events.push(function (duration) {
                 emptyLine(menuLoader1, duration);
             }) : null;
-            executeMenuLoaders(events, loadObs, 500);
+            executeMenuLoaders(events, loadObs, 0);
         }
   });
 
@@ -310,7 +311,7 @@ d3.select("#menuItem2")
             menu.menuLoader2 ? events.push(function (duration) {
                 emptyLine(menuLoader2, duration);
             }) : null;
-            executeMenuLoaders(events, loadPhysics, 500);
+            executeMenuLoaders(events, loadPhysics, 0);
         }
   });
 
@@ -328,7 +329,7 @@ d3.select("#menuItem3")
             menu.menuLoader3 ? events.push(function (duration) {
                 emptyLine(menuLoader3, duration);
             }) : null;
-            executeMenuLoaders(events, loadAnalyse, 500);
+            executeMenuLoaders(events, loadAnalyse, 0);
         }
   });
 
@@ -345,7 +346,7 @@ d3.select("#menuItem4")
             !menu.menuLoader3 ? events.push(function (duration) {
                 fillLine(menuLoader3, duration);
             }) : null;
-            executeMenuLoaders(events, loadForecasts, 500);
+            executeMenuLoaders(events, loadForecasts, 0);
         }
   });
 
