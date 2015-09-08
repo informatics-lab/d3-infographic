@@ -6,6 +6,10 @@
   padding: 10% 18% 0 0;
 }
 
+#obs-wrapper p {
+  text-align: left;
+}
+
 /*#obs-wrapper .text h2 {*/
   /*font-size: 18px;*/
 /*}*/
